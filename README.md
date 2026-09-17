@@ -23,7 +23,7 @@ the model returns:
 
 The notebook also supports **pitcher arsenal masking**, which prevents the final recommendation from selecting a pitch that a particular pitcher does not throw.
 
----
+
 
 ## Notebook Overview
 
@@ -38,7 +38,7 @@ The notebook contains multiple iterations of the project:
 
 The final section of the notebook is the most current implementation.
 
----
+
 
 ## Data
 
@@ -91,7 +91,7 @@ events
 
 Rows missing pitch type, zone, estimated wOBA, pitch description, or event information are removed.
 
----
+
 
 ## Feature Engineering
 
@@ -124,7 +124,7 @@ stand_R
 p_throws_R
 ```
 
----
+
 
 ## Defining an "Optimal" Pitch
 
@@ -202,7 +202,7 @@ For each game context, the pitch type and zone with the lowest historical combin
 
 Importantly, the later notebook versions split the dataset **before** deriving these optimal labels so that the test set is not directly used to determine the recommended pitch/zone combination.
 
----
+
 
 ## Neural Network
 
@@ -233,7 +233,7 @@ The model is compiled with:
 
 The notebook also performs 5-fold validation and plots confusion matrices for pitch and zone predictions.
 
----
+
 
 ## Pitcher Arsenal Masking
 
@@ -249,7 +249,6 @@ Probabilities for pitches outside the arsenal are set to zero before the final p
 
 This allows the same model to produce recommendations that are more realistic for an individual pitcher.
 
----
 
 ## Zone Visualization
 
@@ -257,7 +256,7 @@ Predicted Statcast-zone probabilities are mapped onto an 8×8 grid and displayed
 
 This provides a visual representation of where the model recommends locating the next pitch instead of returning only the numerical Statcast zone.
 
----
+
 
 ## 2024 Evaluation
 
@@ -288,7 +287,7 @@ Zone output training accuracy: 95.3%
 
 The difference is important: high accuracy on the generated training labels does **not** necessarily mean that the model has learned a strong real-world pitch-selection strategy.
 
----
+
 
 ## Installation
 
@@ -305,11 +304,18 @@ The notebook can then be run in:
 * Google Colab
 * VS Code with the Jupyter extension
 
----
+
 
 ## Running the Notebook
 
-1. Install the required Python packages.
+The notebook can then be run in:
+
+* Jupyter Notebook
+* JupyterLab
+* Google Colab
+* VS Code with the Jupyter extension
+
+1. Install the required Python packages.(see below)
 2. Place `statcast_2023.csv` in the notebook's working directory.
 3. Place or generate `statcast_2024.csv` for out-of-season evaluation.
 4. Open the notebook.
@@ -317,6 +323,11 @@ The notebook can then be run in:
 6. For the current implementation, use the **Version 6 - Neural Net** section.
 7. Modify the `scenario` dictionary to represent the game situation you want to evaluate.
 8. Modify `pitcher_arsenal` to contain only the pitches available to the pitcher.
+
+ If you are running on your local machine, make sure you have the required packages installed:
+```bash
+pip install pybaseball pandas numpy scikit-learn matplotlib tensorflow
+```
 
 Example scenario:
 
